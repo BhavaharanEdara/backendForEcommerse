@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const multerStorage = multer.diskStorage({
     destination:function(req,file,cb){
-        cb(null, path.join(__dirname,'../temp'));
+        cb(null, path.join(__dirname,'../tmp'));
     },
     filename: function(req,file,cb){
         const uniqueSuffix = Date.now()+"-"+Math.round(Math.random()*1e9);
@@ -41,8 +41,8 @@ const productImgResize = async(req,res,next)=>{
         return next();
     }
     await Promise.all(req.files.map(async (file)=>{
-        await sharp(file.path).resize({width:300 , height:300}).toFormat('jpeg').jped({quality:90}).toFile(`temp/${file.filename}`);
-        fs.unlinkSync(`temp/${file.filename}`);
+        await sharp(file.path).resize({width:300 , height:300}).toFormat('jpeg').jped({quality:90}).toFile(`tmp/${file.filename}`);
+        fs.unlinkSync(`tmp/${file.filename}`);
 
     }));
     console.log("filter1");

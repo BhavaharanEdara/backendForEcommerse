@@ -15,6 +15,7 @@ const multerStorage = multer.diskStorage({
 });
 
 const multerFilter = (req,file,cb)=>{
+        console.log("filter");
     if(file.mimetype.startsWith('image')){
         cb(null, true);
     }
@@ -34,7 +35,8 @@ const uploadPhoto = multer({
 })
 
 const productImgResize = async(req,res,next)=>{
-    console.log(req);
+        console.log("filter1");
+
     if(!req.file){
         return next();
     }
@@ -43,6 +45,7 @@ const productImgResize = async(req,res,next)=>{
         fs.unlinkSync(`public/images/products/${file.filename}`);
 
     }));
+    console.log("filter1");
     next();
 }
 

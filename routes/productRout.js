@@ -5,7 +5,7 @@ const { isAdmin, isLoggedin } = require('../middlewares/authMiddleware');
 const { uploadPhoto, productImgResize } = require('../middlewares/uploadImg');
 
 router.route('/create').post(createProduct);
-router.route('/upload/').put(isLoggedin,isAdmin, uploadPhoto.array('images',10), productImgResize, uploadImages);
+router.route('/upload/').put(isLoggedin,isAdmin, uploadPhoto.array('images',10).then(console.log("ok").catch(error){console.log(error};), productImgResize, uploadImages);
 router.route('/allProducts').get(getAllProducts)
 router.route('/addWishlist').put(isLoggedin, addToWishlist);
 router.route('/rate').put(isLoggedin, rateProduct);

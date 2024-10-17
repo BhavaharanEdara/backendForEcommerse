@@ -11,7 +11,6 @@ const isLoggedin = asyncHandler(async(req, res, next)=>{
                 const decode = await jwt.verify(token, process.env.JWT_KEY);
                 const user = await User.findById(decode?.id);
                 req.user = user;
-                console.log(user);
                 next();
             }
             else{
@@ -29,7 +28,6 @@ const isLoggedin = asyncHandler(async(req, res, next)=>{
 const isAdmin = asyncHandler(async(req,res, next)=>{
     if(req.user?.role==="admin"){
         
-        console.log(req.user);
         next();
     }
     else{

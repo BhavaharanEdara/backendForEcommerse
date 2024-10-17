@@ -167,7 +167,9 @@ const rateProduct = asyncHandler(async(req,res)=>{
 
 const uploadImages = asyncHandler(async (req,res)=>{
     try{
-        const uploader = (path)=>cloudinaryUploadImg(path, "images");
+        const uploader = (path)=>{
+            console.log(path);
+            cloudinaryUploadImg(path, "images")};
         const urls = [];
         const files = req.files;
         for(const file of files){

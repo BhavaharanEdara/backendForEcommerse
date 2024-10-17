@@ -34,6 +34,7 @@ const uploadPhoto = multer({
 })
 
 const productImgResize = async(req,res,next)=>{
+    console.log(req);
     if(!req.file){
         return next();
     }
